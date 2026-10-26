@@ -9,7 +9,9 @@ import 'package:public_transport/src/models/departure.dart';
 import 'package:public_transport/src/models/itinerary.dart';
 import 'package:public_transport/src/models/location.dart';
 import 'package:public_transport/src/models/mode.dart';
+import 'package:public_transport/src/models/route.dart';
 import 'package:public_transport/src/models/stop.dart';
+import 'package:public_transport/src/models/trip.dart';
 
 class MotisBackend extends Backend {
   final String endpoint;
@@ -77,12 +79,16 @@ class MotisBackend extends Backend {
       distanceMeters: data['distance'] ?? 100, // TODO: calculate
       headsign: data['headsign'],
       tripId: data['tripId'],
-      routeId: data['routeId'],
-      routeType: data['routeType'],
-      routeShortName: data['routeShortName'],
-      routeLongName: data['routeLongName'],
-      routeColor: data['routeColor'],
-      routeTextColor: data['routeTextColor'],
+      route: Route(
+        id: data['routeId'],
+        type: data['routeType'],
+        shortName: data['routeShortName'],
+        longName: data['routeLongName'],
+        color: data['routeColor'],
+        textColor: data['routeTextColor'],
+        mode: _parseModes(data['mode']).first,
+        agencyName: data['agencyName'],
+      ),
       bikesAllowed: data['bikesAllowed'],
       wheelchairAccessible: data['wheelchairAccessible'] == "ACCESSIBLE",
       path: decodePolyline(
@@ -136,4 +142,11 @@ class MotisBackend extends Backend {
         },
       )
       .reduce((a, b) => a + b);
+
+  @override
+  Future<Trip?> queryTrip(String tripId) async {
+    final url = _method('v6/trip');
+    // TODO: implement queryTrip
+    throw UnimplementedError();
+  }
 }

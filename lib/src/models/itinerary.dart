@@ -1,6 +1,7 @@
 import 'package:latlong2/latlong.dart';
 import 'package:public_transport/src/models/location.dart';
 import 'package:public_transport/src/models/mode.dart';
+import 'package:public_transport/src/models/route.dart';
 
 class ItineraryLeg {
   final TransitMode mode;
@@ -20,12 +21,7 @@ class ItineraryLeg {
 
   final String? headsign;
   final String? tripId;
-  final String? routeId;
-  final int? routeType;
-  final String? routeShortName;
-  final String? routeLongName;
-  final String? routeColor;
-  final String? routeTextColor;
+  final Route? route;
 
   ItineraryLeg({
     required this.mode,
@@ -42,11 +38,6 @@ class ItineraryLeg {
     this.bikesAllowed,
     this.headsign,
     this.tripId,
-    this.routeId,
-    this.routeType,
-    this.routeShortName,
-    this.routeLongName,
-    this.routeColor,
-    this.routeTextColor,
+    this.route,
   });
 }

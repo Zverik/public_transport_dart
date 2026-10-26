@@ -3,6 +3,7 @@ import 'package:public_transport/src/models/departure.dart';
 import 'package:public_transport/src/models/itinerary.dart';
 import 'package:public_transport/src/models/mode.dart';
 import 'package:public_transport/src/models/stop.dart';
+import 'package:public_transport/src/models/trip.dart';
 
 abstract class Backend {
   Future<List<Stop>> queryStopsInBounds(LatLng southWest, LatLng northEast);
@@ -24,4 +25,6 @@ abstract class Backend {
     List<TransitMode>? modes,
     int? windowSeconds,
   });
+
+  Future<Trip?> queryTrip(String tripId);
 }
